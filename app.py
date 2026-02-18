@@ -17,8 +17,10 @@ st.dataframe(df.head())
 
 st.markdown("---")
 
-# ==========================================
-# ZONA DE TRABAJO
-# ==========================================
+# Funcionalidad A: Filtros por Sucursal
+st.sidebar.header("Filtros")
+sucursal = st.sidebar.selectbox("Seleccionar Sucursal", df['sucursal'].unique())
 
-# Espacio reservado para nuevas funcionalidades
+df_filtered = df[df['sucursal'] == sucursal]
+st.subheader(f"Ventas de la sucursal: {sucursal}")
+st.bar_chart(df_filtered.set_index('producto')['ingreso'])
